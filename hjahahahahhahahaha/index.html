@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://spelprogrammering.nu/simple.js">
+ 
+        var zombies = [];
+        var i = 0;
+ 
+        while (i < 10) {
+            zombies.push({
+                x:random(totalWidth),
+                y:random(totalHeight),
+                speed:random(1,10)
+            });
+ 
+            i = i + 1
+        }
+ 
+        console.log("test")
+ 
+        function update() {
+            clearScreen();
+ 
+            var i = 0
+ 
+            while (i < 10) {
+                var zombie = zombies[i]
+ 
+                picture(zombie.x,zombie.y,"http://spelprogrammering.nu/bilder/zombie.png")
+ 
+                if (zombie.x < mouse.x) {
+                    zombie.x = zombie.x + zombie.speed;
+                } else {
+                    zombie.x = zombie.x - zombie.speed;
+                }
+ 
+                if (zombie.y < mouse.y) {
+                    zombie.y = zombie.y + zombie.speed;
+                } else {
+                    zombie.y = zombie.y - zombie.speed;
+                }
+ 
+                if (distance(zombie,mouse) < 5 ) {
+                    alert("Game over");
+                    stopUpdate();
+                }
+ 
+                i = i + 1
+            }
+        }
+    </script>
+</body>
+</html>
